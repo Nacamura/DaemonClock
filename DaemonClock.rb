@@ -1,9 +1,11 @@
 require 'clockwork'
 load './TrainSearch/TwitDaemon.rb'
 load './tweetbookmark/tweetbm.rb'
+load './CreditCardHistory/CreditCardHistory.rb'
 
 @twitdaemon
 @tweetbm
+@creditcard
 
 module Clockwork
   handler do |job|
@@ -17,4 +19,7 @@ module Clockwork
 
   #tweetbookmark jobs
   every(1.hour, (@tweetbm ||= TweetBookMark.new), :at=>'**:55')
+
+  #CreditCardHistory jobs
+  every(1.day, (@creditcard ||= CreditCardHistory.new), :if=>lambda{|t| t.day == 25})
 end
