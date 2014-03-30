@@ -5,7 +5,6 @@ load './CreditCardHistory/CreditCardHistory.rb'
 
 @twitdaemon
 @tweetbm
-@creditcard
 
 module Clockwork
   handler do |job|
@@ -21,5 +20,5 @@ module Clockwork
   every(1.hour, (@tweetbm ||= TweetBookMark.new), :at=>'**:55')
 
   #CreditCardHistory jobs
-  every(1.day, (@creditcard ||= CreditCardHistory.new), :if=>lambda{|t| t.day == 25})
+  every(1.day, (CreditCardHistory.new), :if=>lambda{|t| t.day == 25})
 end
