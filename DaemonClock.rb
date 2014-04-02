@@ -1,7 +1,7 @@
 require 'clockwork'
-load './TrainSearch/TwitDaemon.rb'
-load './tweetbookmark/tweetbm.rb'
-load './CreditCardHistory/CreditCardHistory.rb'
+load 'TwitDaemon.rb'
+load 'tweetbm.rb'
+load 'CreditCardHistory.rb'
 
 @twitdaemon
 
