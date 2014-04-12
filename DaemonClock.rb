@@ -2,7 +2,7 @@ require 'clockwork'
 load 'TwitDaemon.rb'
 load 'tweetbm.rb'
 load 'CreditCardHistory.rb'
-load 'Radiko.rb'
+load 'Radio.rb'
 load 'DropboxUploader.rb'
 
 @twitdaemon
@@ -21,7 +21,8 @@ module Clockwork
   #CreditCardHistory jobs
   every(1.day, (CreditCardHistory.new), :if=>lambda{|t| t.day == 25})
 
-  #Radiko jobs
-  every(1.day, Radiko.new("INT", "60", "0100", "interfm"), :at=>'00:59')
+  #Radio jobs
+  every(1.day, Radio.new("Radiko", "INT", "60", "0100", "interfm"), :at=>'00:59')
+  every(1.week, Radio.new("AandG", "SuzakiNishi", "30", "0100", "SuzakiNishi"), :at=>'Wednesday 00:59')
   every(1.hour, DropboxUploader.new(".mp3"))
 end
