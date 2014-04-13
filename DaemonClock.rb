@@ -13,7 +13,7 @@ module Clockwork
   end
 
   #TrainSearch jobs
-  every(1.minute, (@twitdaemon ||= TwitDaemon.new), :if=>lambda{|t| (16...19) === t.hour})
+  every(2.minute, (@twitdaemon ||= TwitDaemon.new), :if=>lambda{|t| (10...24) === t.hour})
 
   #tweetbookmark jobs
   every(1.hour, (TweetBookMark.new), :at=>'**:55')
@@ -22,7 +22,6 @@ module Clockwork
   every(1.day, (CreditCardHistory.new), :if=>lambda{|t| t.day == 25})
 
   #Radio jobs
-  every(1.day, Radio.new("Radiko", "INT", "60", "0100", "interfm"), :at=>'00:59')
   every(1.week, Radio.new("AandG", "SuzakiNishi", "30", "0100", "SuzakiNishi"), :at=>'Wednesday 00:59')
   every(1.hour, DropboxUploader.new(".mp3"))
 end
